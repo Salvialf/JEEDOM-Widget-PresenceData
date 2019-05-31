@@ -1,15 +1,12 @@
 # PresenceData
 
-################# A L'ESSAI #################
+Widget pour Jeedom permettant d'afficher une icône ainsi que les données de présence (date et heure arrivée/départ + durée) à partir d'une simple info binaire.
 
-A partir d'une simple info binaire, ce widget pour Jeedom est capable d'afficher les informations relatives à la présence 
-telles qu'une icône ainsi que l'heure d'arrivée et de départ incluant la durée de présence ou d'absence.
+<img src="/icon.png" alt="visuel"/>
 
-<img src="/PresenceData.jpg" alt="visuel"/>
+Le widget inclus un visuel par défaut de couleur verte en cas de présence ainsi qu'un autre visuel de couleur rose.  
+La sélection de l'icône rose passe par l'ajout d'un paramètre optionnel ayant pour nom "<i><b>qui</b></i>" et pour valeur '**femme**':
+<img src="/cmd.info.binary.PresenceData/femme_on.png" alt="icone rose" height=90px width=90px/>
 
-Pour ajouter une icône perso: paramètre optionnel du widget -> nom:<b>qui</b> / valeur = nom de fichier:<b>"qui_</b>_on.png" ou <b>"qui_</b>_off.png".
-
-taille de l'icône: paramètre optionnel du widget -> nom:<b>taille</b> / valeur:<b>chiffre en pixels</b> (par exemple taille:100 = icône de 100*100px).
-
-################# A L'ESSAI #################
-      
+Il est possible et même recommandé d'ajouter ses propres icônes dans le widget (telles que les photos des membres du foyer par exemple). Le nommage des icônes est normalisé et doit respecter le format suivant: "<i><b>qui</b>_off.png</i>"=*Absence* & "<i><b>qui</b>_on.png</i>"=*Présence*.  
+Pour ajouter vos icônes, sur la page du Widget, cliquer sur le bouton "Fichiers" tout en haut puis "choisir un fichier" et ajouter vos images une par une. 
