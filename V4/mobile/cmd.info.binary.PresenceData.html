@@ -1,21 +1,21 @@
 <div style="padding:10px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">	
-  	<center><div id="iconCmd#uid#"></div>
+  	<div id="iconCmd#uid#"></div>
   	<div id="donnees#uid#"> 
   	<div id="datecmd#uid#"></div>
-    <div id="timeCmd#uid#"></div>
-    </div></center>
+    <span class="timeCmd label label-default" id="timeCmd#uid#"></span>
+    </div>
 	<script>
-    var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
-    var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#'):90;
-    var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#'):90;
+      var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
+      var valueH = is_numeric('#hauteur2#') ? parseFloat('#hauteur2#'):90;
+      var valueL = is_numeric('#largeur2#') ? parseFloat('#largeur2#'):90;
       
-		jeedom.cmd.update['#id#'] = function(_options){          
-        $.include(['plugins/widget/core/template/dashboard/cmd.info.binary.PresenceData/duration.custom.js'], function() {
-        jeedom.cmd.displayDuration2(_options.valueDate, $('#timeCmd#uid#'));})
+		jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.displayDuration(_options.valueDate,$('#timeCmd#uid#'));
         
+        var week = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
         var date = new Date(_options.valueDate.replace(' ', 'T'));
         var t = _options.valueDate.split(/[- :]/);
-		var format = $.datepicker.formatDate('D d M', date);
+		var format = week[date.getDay()]+" "+t[2]+"/"+t[1];
         var time = "à "+t[3]+":"+t[4];  
         
         if (parseInt(_options.display_value) == 1) {
@@ -27,40 +27,30 @@
 		valueState = "off";
 		}
       
-    var iconPath = "plugins/widget/core/template/dashboard/cmd.info.binary.PresenceData/"+valueQui+"_"+valueState+".png";
+    var iconPath = "data/customTemplates/dashboard/cmd.info.binary.PresenceData/"+valueQui+"_"+valueState+".png";
           
         $('#iconCmd#uid#').empty().append('<img src="'+iconPath+'" height='+valueH+' width='+valueL+'>');
           
         $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
     	}
       	jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
-             
-        if ('#vertical#'!= "1"){
+		
+      	if ('#vertical#'!= "1"){
         $('#iconCmd#uid#').css('float','left');
         $('#donnees#uid#').css('float','right');}
       	
       	if ('#duree#'== "0"){
-        $('#timeCmd#id#').hide();}
-</script>
+        $('#timeCmd#uid#').hide();}
+  </script>
 <style>
 #donnees#uid# {
-  	width:100px;
+  	width:48%;
   	height:95px;
   }
 #datecmd#uid# {
+  	line-height:20px;
     font-size:14px;
-    font-weight:bold;
   	margin-top:5px;
   }
-#timeCmd#uid# {
-  	width:90px;
-    background-color:#cmdColor#;
-    margin-top:4px;
-    font-size:12px;
-    font-weight:bold;
-    border-radius:5px;
-    box-shadow:0px 2px 2px 0px rgba(0, 0, 0, 1) inset,0px 2px 2px 0px rgba(255, 255, 255, 0.5);
-    text-shadow:1px 2px 8px #000;
-  }
-</style>
+  </style>
 </div>
