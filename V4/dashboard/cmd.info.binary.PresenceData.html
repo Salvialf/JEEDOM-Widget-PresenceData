@@ -4,13 +4,12 @@
   	<div id="datecmd#uid#"></div>
     <span class="timeCmd label label-default" id="timeCmd#uid#"></span>
     </div>
-<script>
-    var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
-    var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#'):90;
-    var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#'):90;
-      
+<script>     
 		jeedom.cmd.update['#id#'] = function(_options){
         jeedom.cmd.displayDuration(_options.valueDate,  $('#timeCmd#uid#'));
+	var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
+    var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#'):90;
+    var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#'):90;
         
     var date = new Date(_options.valueDate.replace(' ', 'T'));
     var t = _options.valueDate.split(/[- :]/);

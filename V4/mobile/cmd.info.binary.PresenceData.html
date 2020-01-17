@@ -5,12 +5,12 @@
     <span class="timeCmd label label-default" id="timeCmd#uid#"></span>
     </div>
 	<script>
-      var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
-      var valueH = is_numeric('#hauteur2#') ? parseFloat('#hauteur2#'):90;
-      var valueL = is_numeric('#largeur2#') ? parseFloat('#largeur2#'):90;
-      
 		jeedom.cmd.update['#id#'] = function(_options){
         jeedom.cmd.displayDuration(_options.valueDate,$('#timeCmd#uid#'));
+		var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
+		var valueH = is_numeric('#hauteur2#') ? parseFloat('#hauteur2#'):90;
+		var valueL = is_numeric('#largeur2#') ? parseFloat('#largeur2#'):90;
+      
         
         var week = ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'];
         var date = new Date(_options.valueDate.replace(' ', 'T'));
