@@ -1,0 +1,54 @@
+<div style="padding:10px;" class="cmd #history# tooltips cmd-widget" data-type="info" data-subtype="binary" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#">	
+  	<div id="iconCmd#uid#"></div>
+  	<div id="donnees#uid#"> 
+  	<div id="datecmd#uid#"></div>
+    <span class="timeCmd label label-default" id="timeCmd#uid#"></span>
+    </div>
+<script>     
+		jeedom.cmd.update['#id#'] = function(_options){
+        jeedom.cmd.displayDuration(_options.valueDate,  $('#timeCmd#uid#'));
+	var valueQui = ('#qui#' !='#'+'qui#') ? "#qui#":"defaut";
+    var valueH = is_numeric('#hauteur#') ? parseFloat('#hauteur#'):90;
+    var valueL = is_numeric('#largeur#') ? parseFloat('#largeur#'):90;
+        
+    var date = new Date(_options.valueDate.replace(' ', 'T'));
+    var t = _options.valueDate.split(/[- :]/);
+	var format = $.datepicker.formatDate('D d M', date);
+    var time = "à "+t[3]+":"+t[4];  
+        
+        if (parseInt(_options.display_value) == 1) {
+        $('#datecmd#uid#').html('Arrivée:'+'<br>'+format+'<br>'+time);
+		valueState = "on";
+		}
+        if (parseInt(_options.display_value) == 0) {
+        $('#datecmd#uid#').html('Départ:'+'<br>'+format+'<br>'+time);
+		valueState = "off";
+		}
+          
+    var iconPath = "plugins/pimpJeedom/core/template/dashboard/cmd.info.binary.PresenceData/"+valueQui+"_"+valueState+".png";
+          
+        $('#iconCmd#uid#').empty().append('<img src="'+iconPath+'" height='+valueH+' width='+valueL+'>');
+          
+        $('.cmd[data-cmd_id=#id#]').attr('title','Valeur du '+_options.valueDate+', collectée le '+_options.collectDate);
+    	}
+      	jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+ 
+        if ('#vertical#'!= "1"){
+        $('#iconCmd#uid#').css('float','left');
+        $('#donnees#uid#').css('float','right');}
+      	
+      	if ('#duree#'== "0"){
+        $('#timeCmd#uid#').hide();}
+</script>
+<style>
+#donnees#uid# {
+  	width:100px;
+  	height:95px;
+  }
+#datecmd#uid# {
+  	line-height:20px;
+    font-size:14px;
+  	margin-top:5px;
+  }
+</style>
+</div>
